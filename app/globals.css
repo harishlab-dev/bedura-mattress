@@ -1,0 +1,323 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/* stylelint-disable-next-line at-rule-no-unknown */
+@theme inline {
+  --font-playfair: var(--font-playfair), 'Playfair Display Fallback';
+  --font-poppins: var(--font-poppins), 'Poppins Fallback';
+  --font-heading: var(--font-playfair);
+  --font-sans: var(--font-poppins), 'Poppins Fallback';
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-accent-pink: var(--accent-pink);
+
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  /* Bedura section backgrounds — distinct from card/background */
+  --color-light-section: var(--light-section);
+  --color-light-gray: var(--light-gray);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: light;
+
+  /* BEDURA Brand System — fixed, no dark mode (brand spec is strict) */
+  --background: #e6daf5;
+  --foreground: #2D2D2D;
+
+  --card: #FFFFFF;
+  --card-foreground: #2D2D2D;
+
+  --popover: #6B2FA0;
+  --popover-foreground: #2D2D2D;
+
+  /* Primary: Deep Purple from logo */
+  --primary: #6B2FA0;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary Purple */
+  --secondary: #7D3DB8;
+  --secondary-foreground: #FFFFFF;
+
+  /* Section backgrounds — whitespace + light gray per brief */
+  --light-section: #F8F7FC;
+  --light-gray: #F0F0F2;
+
+  --muted: #F0F0F2;
+  --muted-foreground: #6B6B70;
+
+  /* Soft Orange + Soft Pink — both first-class accents */
+  --accent: #F48B1F;
+  --accent-pink: #D84D84;
+  --accent-foreground: #FFFFFF;
+
+  --destructive: #EF4444;
+  --border: #E8E8EB;
+  --input: #F8F7FC;
+  --ring: #6B2FA0;
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+
+  --radius: 0.625rem;
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+@layer base {
+  /* stylelint-disable-next-line at-rule-no-unknown */
+  * {
+    @apply border-border outline-ring/50;
+  }
+  /* stylelint-disable-next-line at-rule-no-unknown */
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* stylelint-disable-next-line at-rule-no-unknown */
+  html {
+    @apply font-sans scroll-smooth;
+  }
+
+  /* Premium text selection — branded, not browser-default blue */
+  ::selection {
+    background-color: var(--primary);
+    color: #FFFFFF;
+  }
+
+  /* Slim, brand-tinted scrollbar (webkit browsers) */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--light-gray);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+
+  /* Visible, brand-colored keyboard focus — never silently removed */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* ============================================================
+   DESIGN SYSTEM — Spacing Rhythm
+   One source of truth for section vertical rhythm so every
+   section (Hero, Why Bedura, Promise, etc.) inherits the same
+   breathing room instead of guessing py-24 vs py-32 per file.
+   ============================================================ */
+:root {
+  --section-y: clamp(5rem, 10vw, 9rem);          /* vertical padding per section */
+  --section-y-tight: clamp(3.5rem, 6vw, 5.5rem); /* denser sections: FAQ, footer */
+  --content-gap: clamp(1.5rem, 3vw, 2.5rem);     /* gap between heading/body/CTA */
+  --container-max: 88rem;                         /* 1408px outer cap */
+  --container-pad: clamp(1.25rem, 5vw, 4rem);    /* responsive side gutters */
+}
+
+@layer utilities {
+  /* ---- Layout primitives ---- */
+  .section {
+    padding-top: var(--section-y);
+    padding-bottom: var(--section-y);
+  }
+  .section-tight {
+    padding-top: var(--section-y-tight);
+    padding-bottom: var(--section-y-tight);
+  }
+  .container-bedura {
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-pad);
+  }
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--content-gap);
+  }
+
+  /* ---- Typography scale ----
+     Fluid clamp() sizes tuned for Playfair Display headings and
+     Poppins body, so type doesn't jump awkwardly at breakpoints. */
+  .text-display {
+    font-family: var(--font-playfair);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+  }
+  .text-headline {
+    font-family: var(--font-playfair);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-size: clamp(2.25rem, 4.2vw, 3.75rem);
+  }
+  .text-title {
+    font-family: var(--font-playfair);
+    font-weight: 600;
+    line-height: 1.15;
+    font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+  }
+  .text-subtitle {
+    font-family: var(--font-poppins);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--muted-foreground);
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  }
+  .text-body-lg {
+    font-family: var(--font-poppins);
+    font-weight: 300;
+    line-height: 1.65;
+    font-size: clamp(1rem, 1.1vw, 1.125rem);
+  }
+
+  /* Small uppercase label used sparingly above headings — only
+     where it encodes real meaning (a section's role), never as
+     decoration for its own sake. */
+  .text-eyebrow {
+    font-family: var(--font-poppins);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---- Premium link / hover micro-interaction ----
+     Underline draws in from the left on hover instead of a blunt
+     color swap — restrained Apple/Aesop-style detail. */
+  .link-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* ---- Image reveal masks ----
+     CSS defines the clean start/end state; Framer Motion (inside
+     components) drives the actual reveal by toggling these via
+     variants — keeps visual treatment and animation trigger separate. */
+  .image-mask {
+    overflow: hidden;
+    clip-path: inset(0 0 0 0);
+  }
+  .image-mask img,
+  .image-mask video {
+    will-change: transform;
+  }
+
+  /* Subtle, premium image hover-zoom — apply directly to the
+     <img>/<video> inside an .image-mask wrapper. */
+  .image-hover-zoom {
+    transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .image-hover-zoom:hover {
+    transform: scale(1.045);
+  }
+
+  /* ---- Glass surface for Contact / Enquiry split layouts ---- */
+  .glass-surface {
+    background-color: color-mix(in srgb, #FFFFFF 70%, transparent);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid color-mix(in srgb, #FFFFFF 40%, transparent);
+  }
+
+  /* ---- Scroll-driven animation helper ---- */
+  .will-animate {
+    will-change: transform, opacity;
+  }
+}
+
+/* Respect reduced-motion preference site-wide */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .image-hover-zoom:hover {
+    transform: none;
+  }
+}
