@@ -75,8 +75,7 @@ export function EssentialsGalleryModal({
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="relative w-full max-w-5xl rounded-3xl bg-white shadow-2xl overflow-hidden"
-        >
+className="relative bg-white rounded-2xl w-[95vw] max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl"        >
           {/* Close */}
 
           <button
@@ -100,7 +99,7 @@ export function EssentialsGalleryModal({
             <X size={22} />
           </button>
 
-          <div className="p-4 md:p-10">
+          <div className="p-3 md:p-7">
 
             <h2 className="mb-8 text-center font-playfair text-4xl font-bold">
               {title}
@@ -120,7 +119,7 @@ export function EssentialsGalleryModal({
               <>
                 {/* Main Image */}
 
-                <div className="relative mx-auto h-[400px] max-w-3xl overflow-hidden rounded-2xl bg-[#fafafa]">
+                <div className="relative mx-auto h-[280px] max-w-3xl overflow-hidden rounded-2xl bg-[#fafafa]">
                   <Image
                     src={images[current]}
                     alt={title}
